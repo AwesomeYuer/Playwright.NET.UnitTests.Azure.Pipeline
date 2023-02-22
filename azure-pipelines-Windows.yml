@@ -91,7 +91,7 @@ steps:
     publishWebProjects: false
     projects: |
      **/*.csproj
-     !**/*[Tt]est*.csproj
+     # !**/*[Tt]est*.csproj
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
     zipAfterPublish: True
   condition: succeededOrFailed() # always()
