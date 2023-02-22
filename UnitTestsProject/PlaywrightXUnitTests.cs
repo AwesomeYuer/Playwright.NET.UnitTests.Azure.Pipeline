@@ -29,7 +29,7 @@ public class PlaywrightXUnitTests
         var title = await page.InnerTextAsync("title");
         await browser.CloseAsync();
         Console.WriteLine($"{nameof(PlaywrightXUnitTests)} Title: <<{title}>>");
-        Assert.True(title.Contains("百度", StringComparison.OrdinalIgnoreCase));
+        Assert.True(title.Contains("鐧惧害", StringComparison.OrdinalIgnoreCase));
     }
 
     [InlineData(true, "msedge")]
@@ -59,10 +59,10 @@ public class PlaywrightXUnitTests
         var locator = page.Locator("body");
         var s = locator.InnerTextAsync().Result;
 
-        await Assertions.Expect(locator).ToContainTextAsync("百度为您找到相关结果");
+        await Assertions.Expect(locator).ToContainTextAsync("鐧惧害涓烘偍鎵惧埌鐩稿叧缁撴灉");
 
         await browser.CloseAsync();
         Console.WriteLine($"{nameof(PlaywrightXUnitTests)} Title: {title}");
-        Assert.Contains("百度为您找到相关结果", s!);
+        Assert.Contains("鐧惧害涓烘偍鎵惧埌鐩稿叧缁撴灉", s!);
     }
 }

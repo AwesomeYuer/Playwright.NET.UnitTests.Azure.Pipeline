@@ -23,10 +23,6 @@ public class PlaywrightMsTests : PageTest
     //    }
     //}
 
-
-
-
-
     [DataRow(true, "msedge")]
     [DataRow(true, "chrome")]
     [TestMethod()]
@@ -38,8 +34,8 @@ public class PlaywrightMsTests : PageTest
         await page.GotoAsync("https://www.baidu.com");
         var title = await page.InnerTextAsync("title");
         await browser.CloseAsync();
-        Console.WriteLine($"{nameof(PlaywrightMsTests)}Title:¡¶{title}¡·");
-        Assert.IsTrue(title.Contains("°Ù¶È"));
+        Console.WriteLine($"{nameof(PlaywrightMsTests)}Title:ã€Š{title}ã€‹");
+        Assert.IsTrue(title.Contains("ç™¾åº¦"));
     }
 
     [DataRow(true, "chrome")]
@@ -74,9 +70,9 @@ public class PlaywrightMsTests : PageTest
         var s = page.InnerTextAsync("body").Result;
         Console.WriteLine($"{nameof(PlaywrightMsTests)} Title: <<{title}>>");
 
-        await Expect(locator).ToContainTextAsync("°Ù¶È");
+        await Expect(locator).ToContainTextAsync("ç™¾åº¦");
 
         await browser.CloseAsync();
-        Assert.IsTrue(s!.Contains("°Ù¶ÈÎªÄúÕÒµ½Ïà¹Ø½á¹û"));
+        Assert.IsTrue(s!.Contains("ç™¾åº¦ä¸ºæ‚¨æ‰¾åˆ°ç›¸å…³ç»“æžœ"));
     }
 }
