@@ -59,7 +59,7 @@ public class PlaywrightNUnitTests : PageTest
 
         var s = locator.InnerTextAsync().Result;
 
-        s = "百度一下，你就知道";
+        //s = "百度一下，你就知道";
         //await Expect(locator).ToContainTextAsync("百度");
 
         Console.WriteLine($"title: {s}");
