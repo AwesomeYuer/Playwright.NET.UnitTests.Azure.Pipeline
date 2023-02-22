@@ -50,7 +50,7 @@ steps:
   inputs:
     command: 'custom'
     custom: 'tool'
-    arguments: 'run playwright install --force chrome'
+    arguments: 'run playwright install'
 
 - task: DotNetCoreCLI@2
   displayName: Run Playwright Install msedge After Build
@@ -91,7 +91,7 @@ steps:
     publishWebProjects: false
     projects: |
      **/*.csproj
-     !**/*[Tt]est*.csproj
+     # !**/*[Tt]est*.csproj
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
     zipAfterPublish: True
   condition: succeededOrFailed() # always()
