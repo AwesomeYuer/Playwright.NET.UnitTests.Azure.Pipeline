@@ -72,6 +72,10 @@ steps:
     projects: |
       **/*UnitTests*.csproj
     # filter: 'FullyQualifiedName~Playwright'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    resultsFolder: '$(build.ArtifactStagingDirectory)/TestResults/'
+    otherConsoleOptions: '/collect:"Code Coverage;Format=Cobertura"'
+    codeCoverageEnabled: true
     arguments: '-e BROWSER=chromium'
 
 - task: DotNetCoreCLI@2
@@ -81,6 +85,10 @@ steps:
     projects: |
       **/*UnitTests*.csproj
     # filter: 'FullyQualifiedName~Playwright'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    resultsFolder: '$(build.ArtifactStagingDirectory)/TestResults/'
+    otherConsoleOptions: '/collect:"Code Coverage;Format=Cobertura"'
+    codeCoverageEnabled: true
     arguments: '-e BROWSER=chromium -e CHANNEL=msedge'
 
 #- task: PublishTestResults@2
@@ -97,6 +105,11 @@ steps:
     testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
     searchFolder: '$(Agent.TempDirectory)'
     mergeTestResults: true
+
+- task: CopyFiles@2
+  inputs:
+    contents: '$(Agent.TempDirectory)/**/*.trx'
+    targetFolder: '$(Build.ArtifactStagingDirectory)/TestResults/**/*.trx'
 
 - task: PublishCodeCoverageResults@1
   inputs:
