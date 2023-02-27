@@ -85,12 +85,14 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    contents: '$(Agent.TempDirectory)/**/*.cobertura.xml'
+    sourceFolder: '$(Agent.TempDirectory)/**'
+    contents: '*.cobertura.xml'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: CopyFiles@2
   inputs:
-    contents: '$(Agent.TempDirectory)/**/*.trx'
+    sourceFolder: '$(Agent.TempDirectory)/**'
+    contents: '*.trx'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishTestResults@2
