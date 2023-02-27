@@ -90,20 +90,6 @@ steps:
 #    testResultsFiles: '$(Agent.TempDirectory)/**/*.xml'
 #    mergeTestResults: true
 
-- task: VSTest@2
-  displayName: 'Run Unit Test VSTest@2'
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-     **\*UnitTests*.dll
-     !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-    resultsFolder: '$(build.ArtifactStagingDirectory)/TestResults/'
-    otherConsoleOptions: '/collect:"Code Coverage;Format=Cobertura" -e:BROWSER=chromium -e:CHANNEL=msedge'
-    codeCoverageEnabled: true
-
-
-
 - task: PublishTestResults@2
   inputs:
     displayName: PublishTestResults@2 VSTest
