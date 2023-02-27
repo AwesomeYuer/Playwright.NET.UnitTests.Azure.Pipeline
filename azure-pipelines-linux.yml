@@ -86,6 +86,7 @@ steps:
 - script: |
    echo Write your commands here
    echo Hello world
+   ls -lh $(Build.ArtifactStagingDirectory)/TestResults
   displayName: 'Command Line Script'
 
 - task: CopyFiles@2
@@ -93,7 +94,7 @@ steps:
     sourceFolder: '$(Agent.TempDirectory)'
     contents: |
       **/*.cobertura.xml
-      !**/In/**/*.cobertura.xml
+      # !**/In/**/*.cobertura.xml
     targetFolder: '$(Build.ArtifactStagingDirectory)/TestResults'
 
 - task: CopyFiles@2
