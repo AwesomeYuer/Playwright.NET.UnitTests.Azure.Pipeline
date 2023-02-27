@@ -77,6 +77,17 @@ steps:
     # filter: 'FullyQualifiedName~Playwright'
     arguments: '-e BROWSER=chromium -e CHANNEL=msedge --results-directory $(build.ArtifactStagingDirectory)/TestResults/'
 
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'NUnit'
+    testResultsFiles: '**/TEST-*.xml'
+    mergeTestResults: true
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/TEST-*.xml'
+    mergeTestResults: true
 
 - task: PublishCodeCoverageResults@1
   inputs:
