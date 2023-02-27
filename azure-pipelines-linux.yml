@@ -83,10 +83,17 @@ steps:
 #    # filter: 'FullyQualifiedName~Playwright'
 #    arguments: '-e BROWSER=chromium -e CHANNEL=msedge --collect:"XPlat Code Coverage;Format=cobertura"'
 
+- script: |
+   echo Write your commands here
+   echo Hello world
+  displayName: 'Command Line Script'
+
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Agent.TempDirectory)'
-    contents: '**/*.cobertura.xml'
+    contents: |
+      **/*.cobertura.xml
+      !**/In/**/*.cobertura.xml
     targetFolder: '$(Build.ArtifactStagingDirectory)/TestResults'
 
 - task: CopyFiles@2
