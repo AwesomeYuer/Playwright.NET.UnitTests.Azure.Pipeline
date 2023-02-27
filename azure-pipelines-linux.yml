@@ -91,7 +91,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Agent.TempDirectory)/**'
+    sourceFolder: '$(Agent.TempDirectory)'
     contents: '**/*.trx'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
