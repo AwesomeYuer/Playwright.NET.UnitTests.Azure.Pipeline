@@ -74,39 +74,37 @@ steps:
     # filter: 'FullyQualifiedName~Playwright'
     arguments: '-e BROWSER=chromium --collect:"XPlat Code Coverage"'
 
-- task: DotNetCoreCLI@2
-  displayName: Test@msedge
-  inputs:
-    command: 'test'
-    projects: |
-      **/*UnitTests*.csproj
-    # filter: 'FullyQualifiedName~Playwright'
-    arguments: '-e BROWSER=chromium -e CHANNEL=msedge --collect:"XPlat Code Coverage"'
-
-#- task: PublishTestResults@2
-#  displayName: PublishTestResults@2 NUnit
+#- task: DotNetCoreCLI@2
+#  displayName: Test@msedge
 #  inputs:
-#    testResultsFormat: 'NUnit'
-#    testResultsFiles: '$(Agent.TempDirectory)/**/*.xml'
-#    mergeTestResults: true
+#    command: 'test'
+#    projects: |
+#      **/*UnitTests*.csproj
+#    # filter: 'FullyQualifiedName~Playwright'
+#    arguments: '-e BROWSER=chromium -e CHANNEL=msedge --collect:"XPlat Code Coverage"'
 
-- task: PublishTestResults@2
+- task: CopyFiles@2
   inputs:
-    displayName: PublishTestResults@2 VSTest
-    testResultsFormat: 'VSTest'
-    testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
-    searchFolder: '$(Agent.TempDirectory)'
-    mergeTestResults: true
+    contents: '$(Agent.TempDirectory)/**/*.cobertura.xml'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: CopyFiles@2
   inputs:
     contents: '$(Agent.TempDirectory)/**/*.trx'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
+- task: PublishTestResults@2
+  displayName: PublishTestResults@2 VSTest
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '$(Build.ArtifactStagingDirectory)/**/*.trx'
+    searchFolder: '$(Build.ArtifactStagingDirectory)'
+    mergeTestResults: true
+
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(build.ArtifactStagingDirectory)/TestResults/**/*.Cobertura.xml'
+    summaryFileLocation: '$(build.ArtifactStagingDirectory)/TestResults/**/*.cobertura.xml'
   condition: succeededOrFailed() # always()
 
 - task: DotNetCoreCLI@2
