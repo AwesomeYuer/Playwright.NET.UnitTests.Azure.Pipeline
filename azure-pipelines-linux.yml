@@ -80,13 +80,13 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: '**/*.trx'
     mergeTestResults: true
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'VSTest'
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: '**/*.trx'
     mergeTestResults: true
 
 - task: PublishCodeCoverageResults@1
