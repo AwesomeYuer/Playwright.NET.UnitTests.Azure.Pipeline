@@ -66,7 +66,7 @@ steps:
     projects: |
       **/*UnitTests*.csproj
     # filter: 'FullyQualifiedName~Playwright'
-    arguments: '-e BROWSER=chromium --results-directory $(build.ArtifactStagingDirectory)/TestResults/'
+    arguments: '-e BROWSER=chromium --Logger trx --results-directory $(build.ArtifactStagingDirectory)/TestResults/'
 
 - task: DotNetCoreCLI@2
   displayName: Test@msedge
@@ -75,7 +75,7 @@ steps:
     projects: |
       **/*UnitTests*.csproj
     # filter: 'FullyQualifiedName~Playwright'
-    arguments: '-e BROWSER=chromium -e CHANNEL=msedge --results-directory $(build.ArtifactStagingDirectory)/TestResults/'
+    arguments: '-e BROWSER=chromium -e CHANNEL=msedge --Logger trx --results-directory $(build.ArtifactStagingDirectory)/TestResults/'
 
 - task: PublishTestResults@2
   inputs:
