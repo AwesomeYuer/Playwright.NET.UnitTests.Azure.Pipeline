@@ -72,7 +72,7 @@ steps:
     projects: |
       **/*UnitTests*.csproj
     # filter: 'FullyQualifiedName~Playwright'
-    arguments: '-e BROWSER=chromium /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+    arguments: '-e BROWSER=chromium --collect:"XPlat Code Coverage"'
 
 - task: DotNetCoreCLI@2
   displayName: Test@msedge
@@ -81,7 +81,7 @@ steps:
     projects: |
       **/*UnitTests*.csproj
     # filter: 'FullyQualifiedName~Playwright'
-    arguments: '-e BROWSER=chromium -e CHANNEL=msedge /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+    arguments: '-e BROWSER=chromium -e CHANNEL=msedge --collect:"XPlat Code Coverage"'
 
 #- task: PublishTestResults@2
 #  displayName: PublishTestResults@2 NUnit
