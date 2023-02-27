@@ -101,7 +101,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     contents: '$(Agent.TempDirectory)/**/*.trx'
-    targetFolder: '$(Build.ArtifactStagingDirectory)/TestResults/**/*.trx'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishCodeCoverageResults@1
   inputs:
