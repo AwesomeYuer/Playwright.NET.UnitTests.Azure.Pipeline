@@ -83,12 +83,6 @@ steps:
 #    # filter: 'FullyQualifiedName~Playwright'
 #    arguments: '-e BROWSER=chromium -e CHANNEL=msedge --collect:"XPlat Code Coverage;Format=cobertura"'
 
-- script: |
-   echo Write your commands here
-   echo Hello world
-   ls -lh $(Build.ArtifactStagingDirectory)/TestResults
-  displayName: 'Command Line Script'
-
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Agent.TempDirectory)'
@@ -102,6 +96,13 @@ steps:
     sourceFolder: '$(Agent.TempDirectory)'
     contents: '**/*.trx'
     targetFolder: '$(Build.ArtifactStagingDirectory)/TestResults'
+
+- script: |
+   echo Write your commands here
+   echo Hello world
+   ls -lh $(Build.ArtifactStagingDirectory)/TestResults
+  displayName: 'Command Line Script'
+
 
 - task: PublishTestResults@2
   displayName: PublishTestResults@2 VSTest
