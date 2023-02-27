@@ -83,18 +83,19 @@ steps:
     # filter: 'FullyQualifiedName~Playwright'
     arguments: '-e BROWSER=chromium -e CHANNEL=msedge'
 
-- task: PublishTestResults@2
-  displayName: PublishTestResults@2 NUnit
-  inputs:
-    testResultsFormat: 'NUnit'
-    testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
-    mergeTestResults: true
+#- task: PublishTestResults@2
+#  displayName: PublishTestResults@2 NUnit
+#  inputs:
+#    testResultsFormat: 'NUnit'
+#    testResultsFiles: '$(Agent.TempDirectory)/**/*.xml'
+#    mergeTestResults: true
 
 - task: PublishTestResults@2
   inputs:
     displayName: PublishTestResults@2 VSTest
     testResultsFormat: 'VSTest'
     testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
+    searchFolder: '$(Agent.TempDirectory)'
     mergeTestResults: true
 
 - task: PublishCodeCoverageResults@1
