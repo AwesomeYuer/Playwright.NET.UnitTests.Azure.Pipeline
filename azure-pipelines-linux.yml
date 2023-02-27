@@ -72,7 +72,7 @@ steps:
     projects: |
       **/*UnitTests*.csproj
     # filter: 'FullyQualifiedName~Playwright'
-    arguments: '--results-directory $(build.ArtifactStagingDirectory)/TestResults -e BROWSER=chromium'
+    arguments: '-e BROWSER=chromium'
 
 - task: DotNetCoreCLI@2
   displayName: Test@msedge
@@ -81,18 +81,20 @@ steps:
     projects: |
       **/*UnitTests*.csproj
     # filter: 'FullyQualifiedName~Playwright'
-    arguments: '--results-directory $(build.ArtifactStagingDirectory)/TestResults -e BROWSER=chromium -e CHANNEL=msedge'
+    arguments: '-e BROWSER=chromium -e CHANNEL=msedge'
 
 - task: PublishTestResults@2
+  displayName: PublishTestResults@2 NUnit
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: '**/*.trx'
+    testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
     mergeTestResults: true
 
 - task: PublishTestResults@2
   inputs:
+    displayName: PublishTestResults@2 VSTest
     testResultsFormat: 'VSTest'
-    testResultsFiles: '**/*.trx'
+    testResultsFiles: '$(Agent.TempDirectory)/**/*.trx'
     mergeTestResults: true
 
 - task: PublishCodeCoverageResults@1
