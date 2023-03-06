@@ -55,7 +55,7 @@ public class PlaywrightMsTests : PageTest
 
         await page.Locator("id=kw").FillAsync(Guid.NewGuid().ToString());
 
-        await page.Locator("id=su").ClickAsync();
+        await page.Locator("id=su").ClickAsync().ConfigureAwait(false);
 
         await Task.Delay(2000);
 
