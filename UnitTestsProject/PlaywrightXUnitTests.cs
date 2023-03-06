@@ -45,11 +45,11 @@ public class PlaywrightXUnitTests
 
         if (browserChannel == "firefox")
         {
-            browser = await playwright.Firefox.LaunchAsync();
+            browser = await playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless });
         }
         else if (browserChannel == "webkit")
         {
-            browser = await playwright.Webkit.LaunchAsync();
+            browser = await playwright.Webkit.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless});
         }
         else
         {
