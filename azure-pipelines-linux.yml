@@ -52,7 +52,7 @@ steps:
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: Run Playwright Install chrom After Build
+  displayName: Run Playwright Install chrome After Build
   inputs:
     command: 'custom'
     custom: 'tool'
