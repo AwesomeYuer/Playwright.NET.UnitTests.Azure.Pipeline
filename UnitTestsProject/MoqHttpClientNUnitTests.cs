@@ -15,9 +15,8 @@ public class MoqHttpClientNUnitTests
         var baseAddress = "https://www.fake.com";
         var magicHttpClient = new HttpClient(handlerMock.Object)
         {
-            BaseAddress = new Uri(baseAddress)
-             ,
-            Timeout = TimeSpan.FromSeconds(5)
+              BaseAddress = new Uri(baseAddress)
+            , Timeout = TimeSpan.FromSeconds(5)
         };
         handlerMock
                 .Protected()
