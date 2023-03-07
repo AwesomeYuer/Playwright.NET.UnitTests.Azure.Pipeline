@@ -49,7 +49,7 @@ public class PlaywrightNUnitTests : PageTest
 
 
     [Test]
-    public async Task BaiduSearch_Test()
+    public async Task BaiduSearch_Page_Test()
     {
         await Page.GotoAsync("https://www.baidu.com");
 

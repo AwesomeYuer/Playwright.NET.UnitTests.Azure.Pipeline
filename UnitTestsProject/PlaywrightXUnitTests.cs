@@ -19,7 +19,7 @@ public class PlaywrightXUnitTests
     [InlineData(true, "msedge")]
     [InlineData(true, "chrome")]
     [Theory]
-    public async Task BaiduWithBrowser_Test(bool browserHeadless, string browserOrChannel)
+    public async Task Baidu_Browser_Test(bool browserHeadless, string browserOrChannel)
     {
         var playwright = await Playwright.CreateAsync();
         await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless, Channel = browserOrChannel });
@@ -37,7 +37,7 @@ public class PlaywrightXUnitTests
     //[InlineData(true, "firefox")]
     //[InlineData(true, "webkit")]
     [Theory]
-    public async Task BaiduSearchWithBrowser_Test(bool browserHeadless, string browserOrChannel)
+    public async Task BaiduSearch_Browser_Test(bool browserHeadless, string browserOrChannel)
     {
         var playwright = await Playwright.CreateAsync();
         //await using var browser = await playwright.Chromium.LaunchAsync();
