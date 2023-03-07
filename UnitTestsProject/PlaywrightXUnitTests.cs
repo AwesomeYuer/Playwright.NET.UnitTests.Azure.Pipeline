@@ -19,10 +19,10 @@ public class PlaywrightXUnitTests
     [InlineData(true, "msedge")]
     [InlineData(true, "chrome")]
     [Theory]
-    public async Task BaiduWithBrowser_Test(bool browserHeadless, string browserChannel)
+    public async Task BaiduWithBrowser_Test(bool browserHeadless, string browserOrChannel)
     {
         var playwright = await Playwright.CreateAsync();
-        await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless, Channel = browserChannel });
+        await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless, Channel = browserOrChannel });
         var page = await browser.NewPageAsync();
         await page.GotoAsync("https://www.baidu.com");
 
@@ -37,23 +37,23 @@ public class PlaywrightXUnitTests
     //[InlineData(true, "firefox")]
     //[InlineData(true, "webkit")]
     [Theory]
-    public async Task BaiduSearchWithBrowser_Test(bool browserHeadless, string browserChannel)
+    public async Task BaiduSearchWithBrowser_Test(bool browserHeadless, string browserOrChannel)
     {
         var playwright = await Playwright.CreateAsync();
         //await using var browser = await playwright.Chromium.LaunchAsync();
         IBrowser browser = null!;
 
-        if (browserChannel == "firefox")
+        if (browserOrChannel == "firefox")
         {
             browser = await playwright.Firefox.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless });
         }
-        else if (browserChannel == "webkit")
+        else if (browserOrChannel == "webkit")
         {
             browser = await playwright.Webkit.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless});
         }
         else
         {
-            browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless, Channel = browserChannel });
+            browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless, Channel = browserOrChannel });
         }
 
         var page = await browser.NewPageAsync();

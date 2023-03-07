@@ -26,10 +26,10 @@ public class PlaywrightMsTests : PageTest
     [DataRow(true, "msedge")]
     [DataRow(true, "chrome")]
     [TestMethod()]
-    public async Task BaiduWithBrowser_Test(bool browserHeadless, string browserChannel)
+    public async Task BaiduWithBrowser_Test(bool browserHeadless, string browserOrChannel)
     {
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
-        await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true, Channel = browserChannel });
+        await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = true, Channel = browserOrChannel });
         var page = await browser.NewPageAsync();
         await page.GotoAsync("https://www.baidu.com");
         var title = await page.InnerTextAsync("title");
@@ -41,11 +41,11 @@ public class PlaywrightMsTests : PageTest
     [DataRow(true, "chrome")]
     [DataRow(true, "msedge")]
     [TestMethod()]
-    public async Task BaiduSearchWithBrowser_Test(bool browserHeadless, string browserChannel)
+    public async Task BaiduSearchWithBrowser_Test(bool browserHeadless, string browserOrChannel)
     {
         var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
         //await using var browser = await playwright.Chromium.LaunchAsync();
-        var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless, Channel = browserChannel });
+        var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless, Channel = browserOrChannel });
 
         IPage a = Page;
 
