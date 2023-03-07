@@ -49,7 +49,7 @@ public class PlaywrightXUnitTests
         }
         else if (browserOrChannel == "webkit")
         {
-            browser = await playwright.Webkit.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless});
+            browser = await playwright.Webkit.LaunchAsync(new BrowserTypeLaunchOptions { Headless = browserHeadless });
         }
         else
         {
