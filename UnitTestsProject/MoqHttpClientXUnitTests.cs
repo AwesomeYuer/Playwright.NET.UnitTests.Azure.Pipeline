@@ -20,24 +20,26 @@ public class MoqHttpClientXUnitTests
         };
         handlerMock
                 .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>()
-                )
+                .Setup<Task<HttpResponseMessage>>
+                    (
+                          "SendAsync"
+                        , ItExpr.IsAny<HttpRequestMessage>()
+                        , ItExpr.IsAny<CancellationToken>()
+                    )
                 .ReturnsAsync
-                (
-                    () =>
-                    {
-                        var json = $@"{{ ""result"" : ""Moq {nameof(HttpClient)}.{nameof(HttpClient.SendAsync)}.{nameof(HttpResponseMessage)}"" }}";
-                        return
-                                new HttpResponseMessage
-                                {
-                                    StatusCode = HttpStatusCode.OK,
-                                    Content = new StringContent(json)
-                                };
-                    }
-                ).Verifiable();
+                    (
+                        () =>
+                        {
+                            var json = $@"{{ ""result"" : ""Moq {nameof(HttpClient)}.{nameof(HttpClient.SendAsync)}.{nameof(HttpResponseMessage)}"" }}";
+                            return
+                                    new HttpResponseMessage
+                                    {
+                                        StatusCode = HttpStatusCode.OK,
+                                        Content = new StringContent(json)
+                                    };
+                        }
+                    )
+                .Verifiable();
 
 
         var relativeUrl = $"fake";
